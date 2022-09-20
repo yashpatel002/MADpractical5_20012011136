@@ -3,6 +3,7 @@ package com.example.madpractical5_20012011136
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -10,16 +11,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun play(){
-        Intent(applicationContext,MyService::class.java).putExtra(MyService.DATA_KEY,MyService.DATA_VALUE).apply {
+    fun stop(view: View) {
+        Intent(applicationContext, MyService::class.java).apply {
+            stopService(this)
+        }
+    }
+    fun play(view: View) {
+        Intent(applicationContext, MyService::class.java).putExtra(
+            MyService.DATA_KEY,
+            MyService.DATA_VALUE
+        ).apply {
             startService(this)
         }
     }
-    fun stop(){
-        Intent(applicationContext,MyService::class.java).apply {
-            stopService(this)
-        }
 
-    }
 }
 
